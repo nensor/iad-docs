@@ -412,6 +412,11 @@ paths:
           schema:
             type: string
         - in: query
+          name: orcid
+          description: Query records by author ORCID value
+          schema:
+            type: string
+        - in: query
           name: related_identifiers
           description: Query related identifier values or relation types
           schema:
@@ -517,6 +522,11 @@ paths:
         - in: query
           name: has-related-identifiers
           description: Find records that do or do not have related identifiers
+          schema:
+            type: boolean
+        - in: query
+          name: has-orcid
+          description: Find records that do or do not have at least one author with an ORCID value
           schema:
             type: boolean
         - in: query
