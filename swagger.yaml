@@ -54,8 +54,82 @@ components:
               $ref: '#/components/schemas/contributorTypes'
           required:
             - contributor_type
+    date:
+      type: string
+      anyOf:
+        - format: year
+        - format: yearmonth
+        - format: date
+        - format: datetime
+    productTypes:
+      type: string
+      description: The general type of the work, report, or document for this record.
+      enum:
+        - Audiovisual
+        - Collection
+        - Dataset
+        - Event
+        - Image
+        - InteractiveResource
+        - Model
+        - PhysicalObject
+        - Service
+        - Software
+        - Sound
+        - Text
+        - Workflow
+        - Other
+    identifierTypes:
+      type: string
+      description: The type of identifier represented by this value.
+      enum:
+        - ARK
+        - arXiv
+        - bibcode
+        - DOI
+        - EAN13
+        - EISSN
+        - Handle
+        - IGSN
+        - ISBN
+        - ISSN
+        - ISTC
+        - LISSN
+        - LSID
+        - PMID
+        - PURL
+        - UPC
+        - URL
+        - URN
+        - w3id
+
     contributorTypes:
       type: string
+      description: |
+        Describes the type of contribution to the work.
+        |code|description|
+        |----|-----------|
+        |ContactPerson|Person with knowledge of how to access, troubleshoot, or otherwise field issues related to the resource.|
+        |DataCollector|Person/institution responsible for finding or gathering data under the guidelines of the author(s) or Principal Investigator.|
+        |DataCurator|Person tasked with reviewing, enhancing, cleaning, or standardizing metadata and the associated data submitted.|
+        |DataManager|Person (or organisation with a staff of data managers, such as a data centre) responsible for maintaining the finished resource.|
+        |Distributor|Institution tasked with responsibility to generate/disseminate copies of the resource in either electronic or print form.|
+        |Editor|A person who oversees the details related to the publication format of the resource.|
+        |HostingInstitution|The organisation allowing the resource to be available on the internet.|
+        |Producer|Typically a person or organisation responsible for the artistry and form of a media product.|
+        |ProjectLeader|Person officially designated as head of project team instrumental in the work necessary to development of the resource.|
+        |ProjectManager|Person officially designated as manager of a project. Project may consist of one or many project teams and sub-teams.|
+        |ProjectMember|Person on the membership list of a designated project/project team.|
+        |RegistrationAgency|Institution officially appointed by a Registration Authority to handle specific tasks within a defined area of responsibility.|
+        |RegistrationAuthority|A standards-setting body from which Registration Agencies obtain official recognition and guidance.|
+        |RelatedPerson|Person with no specifically defined role in the development of the resource, but who is someone the author wishes to recognize.|
+        |Researcher|A person involved in analyzing data or the results of an experiment or formal study.|
+        |ResearchGroup|Refers to a group of individuals with a lab, department, or division; the group has a particular, defined focus of activity.|
+        |RightsHolder|Person or institution owning or managing property rights, including intellectual property rights over the resource.|
+        |Sponsor|Person or organisation that issued a contract or under the auspices of which a work has been performed.|
+        |Supervisor|Designated administrator over one or more groups working to produce a resource or over one or more steps of development process.|
+        |WorkPackageLeader|A Work Package is a recognized data product, not all of which is included in publication.|
+        |Other|Any person or institution making a significant contribution, but whose contribution does not "fit".|
       enum:
         - ContactPerson
         - DataCollector
@@ -78,71 +152,64 @@ components:
         - Supervisor
         - WorkPackageLeader
         - Other
-    date:
-      type: string
-      anyOf:
-        - format: year
-        - format: yearmonth
-        - format: date
-        - format: datetime
-        - format: year-range
-        - format: yearmonth-range
-        - format: date-range
-        - format: datetime-range
-    productTypes:
-      type: string
-      enum:
-        - Audiovisual
-        - Collection
-        - Dataset
-        - Event
-        - Image
-        - InteractiveResource
-        - Model
-        - PhysicalObject
-        - Service
-        - Software
-        - Sound
-        - Text
-        - Workflow
-        - Other
-    identifierTypes:
-      type: string
-      enum:
-        - ARK
-        - arXiv
-        - bibcode
-        - DOI
-        - EAN13
-        - EISSN
-        - Handle
-        - IGSN
-        - ISBN
-        - ISSN
-        - ISTC
-        - LISSN
-        - LSID
-        - PMID
-        - PURL
-        - UPC
-        - URL
-        - URN
-        - w3id
+
     relationTypes:
       type: string
+      description: |
+        Indicates the relationship between this identifier and the source record.
+        |code|description|
+        |----|-----------|
+        |Cites|indicates that A includes B in a citation|
+        |Compiles|indicates B is the result of a compile or creation event using A|
+        |Continues|indicates A is a continuation of the work B|
+        |Describes|indicates A describes B|
+        |Documents|indicates A is documentation about/B|
+        |HasMetadata|indicates resource A has additional metadata B|
+        |HasPart|indicates A includes the part B|
+        |HasVersion|indicates A has a version of B|
+        |IsCitedBy|indicates that B includes A in a citation|
+        |IsCompiledBy|indicates B is used to compile or create A|
+        |IsContinuedBy|indicates A is continued by the work B|
+        |IsDerivedFrom|indicates B is a source upon which A is based|
+        |IsDescribedBy|Indicates A is described by B|
+        |IsDocumentedBy|indicates B is documentation about/explaining A|
+        |IsIdenticalTo|indicates that A is identical to B, for use when there is a need to register two separate instances of the same resource|
+        |IsMetadataFor|indicates additional metadata A for a resource B|
+        |IsNewVersionOf|indicates A is a new edition of B, where the new edition has been modified or updated|
+        |IsObsoletedBy|Indicates A is replaced by B|
+        |IsOriginalFormOf|indicates A is the original form of B|
+        |IsPartOf|indicates A is a portion of B; may be used for elements of a series|
+        |IsPreviousVersionOf|indicates A is a previous edition of B|
+        |IsReferencedBy|indicates A is used as a source of information by B|
+        |IsRequiredBy|inidcates A is required by B|
+        |IsReviewedBy|indicates that A is reviewed by B|
+        |IsSourceOf|indicates A is a source upon which B is based|
+        |IsSupplementTo|indicates that A is a supplement to B|
+        |IsSupplementedBy|indicates that B is a supplement to A|
+        |IsVariantFormOf|indicates A is a variant or different form of B, e.g. calculated or calibrated form or different packaging|
+        |IsVersionOf|indicates A is a version of B|
+        |Obsoletes|Indicates A replaces B|
+        |References|indicates B is used as a source of information for A|
+        |Requires|indicates A requires B|
+        |Reviews|indicates that A is a review of B|
+
       enum:
+        - IsDescribedBy
+        - Describes
+        - HasVersion
+        - IsVersionOf
+        - IsRequiredBy
+        - Requires
+        - Obsoletes
+        - IsObsoletedBy
         - IsCitedBy
         - Cites
         - IsSupplementTo
         - IsSupplementedBy
         - IsContinuedBy
         - Continues
-        - IsDescribedBy
-        - Describes
         - HasMetadata
         - IsMetadataFor
-        - HasVersion
-        - IsVersionOf
         - IsNewVersionOf
         - IsPreviousVersionOf
         - IsPartOf
@@ -160,12 +227,11 @@ components:
         - Reviews
         - IsDerivedFrom
         - IsSourceOf
-        - IsRequiredBy
-        - Requires
-        - IsObsoletedBy
-        - Obsoletes
+
     recordType:
       type: object
+      description: Represents the metadata information about a particular work, document, dataset, or
+        paper for a given DOI record.
       properties:
         id:
           description: >-
