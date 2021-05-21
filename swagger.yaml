@@ -608,6 +608,14 @@ paths:
           schema:
             type: boolean
         - in: query
+          name: include
+          description: List of fields to include in results, comma-delimited
+          schema:
+            type: string
+            example:
+              - id,doi,title
+              - status,doi_message,date_record_updated
+        - in: query
           name: sort
           description: Define a sort-by value for search results
           schema:
@@ -656,8 +664,25 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/recordType'
-        default:
-          description: Default error sample response
+        '400':
+          description: Bad request, unable to interpret parameters or values in search
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    default: 400
+                  errors:
+                    description: List of error messages specific to this issue
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - Unable to parse date value
+                      - Start not numeric
 servers:
   - url: 'https://www.osti.gov/iad2'
     variables: {}
