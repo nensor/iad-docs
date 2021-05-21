@@ -609,12 +609,11 @@ paths:
             type: boolean
         - in: query
           name: include
-          description: List of fields to include in results, comma-delimited
+          description: >-
+            Optional list of fields to include in results (comma-delimited). If not
+            provided, all fields will be returned in results
           schema:
             type: string
-            example:
-              - id,doi,title
-              - status,doi_message,date_record_updated
         - in: query
           name: sort
           description: Define a sort-by value for search results
@@ -686,7 +685,7 @@ paths:
 servers:
   - url: 'https://www.osti.gov/iad2'
     variables: {}
-    description: Interagency Data API Service production server
+    description: Interagency Data API Service (production)
   - url: 'https://www.osti.gov/iad2test'
     variables: {}
-    description: Interagency Data API Testing server
+    description: Interagency Data API Service (testing)
